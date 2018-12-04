@@ -17,9 +17,19 @@ sap.ui.define([
 					estado: "MG"
 				},
 				feliz: true,
-				skills: ["UI5", 
-				         "ABAP", 
-				         "JavaScript"]
+				skills: [
+					"UI5", 
+					"ABAP", 
+					"JavaScript"
+				],
+
+				skills2: [
+					{ nome: "UI5_2" }, 
+					{ nome: "ABAP_2" }, 
+					{ nome: "JavaScript_2" }
+				],
+				nota: 3,
+				ocupado: false
 			};
 			
 			
@@ -38,6 +48,18 @@ sap.ui.define([
 			this.getView().setModel(oModeloPessoa);
 			
 			
+		},
+		
+		caixaAlta: function(texto){
+			if(texto){
+			return texto.toUpperCase();
+			}
+		},
+		
+		onSave: function(oEvent){
+			var oModelo = this.getView().getModel();  // JSONModel
+			var bOcupado = oModelo.getProperty("/ocupado");
+			oModelo.setProperty("/ocupado", !bOcupado);
 		}
 
 	});

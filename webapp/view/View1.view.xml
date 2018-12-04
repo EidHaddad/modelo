@@ -8,27 +8,57 @@
 		<pages>
 			<Page title="{i18n>title}">
 				<content>
-					<sap.ui.layout.form:SimpleForm editable="true" layout="ResponsiveGridLayout" xmlns:sap.ui.layout.form="sap.ui.layout.form"
+					<sap.ui.layout.form:SimpleForm busy="{/ocupado}" editable="true" layout="ResponsiveGridLayout" xmlns:sap.ui.layout.form="sap.ui.layout.form"
 						xmlns:sap.ui.core="sap.ui.core" >
 						<sap.ui.layout.form:content>
 							<sap.ui.core:Title text="Cadastro" />
 							<Label text="Nome" />
 							<Input width="100%" id="nome" value="{/nome}" />
 							<Label text="Sobrenome" />
-							<Input width="100%" id="sobrenome"  value="{/sobrenome}"/>
+							<!--<Input value="{/sobrenome}" />-->
+							<Input value="{ path: '/sobrenome', formatter: '.caixaAlta'   }" />
 							<Label text="Cidade / Estado" />
 							<Text text="{/cidade/nome} / {/cidade/estado}" />
 							<Label text="Feliz" />
 							<Switch state="{/feliz}" />
 							<Label text="Skills" />
-							<Select items="{/skills}" >
+							<!--<Select items="{/skills}" >-->
+							<!--	<items>-->
+							<!--		<core:Item text="{}" />-->
+							<!--	</items>-->
+							<!--</Select>-->
+							
+							
+							<Select items="{path: '/skills' }" >
 								<items>
 									<core:Item text="{}" />
 								</items>
 							</Select>
+							
+							
+					    	<Select items="{path: '/skills2' }" >
+								<items>
+									<core:Item text="{nome}" />
+								</items>
+							</Select>
+							
+							<Label text="Two Way" />
+							<Slider min="1" max="5" value="{/nota}" />
+							<RatingIndicator value="{/nota}" />
+							
+							
 						</sap.ui.layout.form:content>
 					</sap.ui.layout.form:SimpleForm>
+	
 				</content>
+				<footer>
+					<Toolbar>
+						<content>
+							<Button text="Salvar" press="onSave" />
+						</content>
+					</Toolbar>
+				</footer>
+				
 			</Page>
 		</pages>
 	</App>
